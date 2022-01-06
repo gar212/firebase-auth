@@ -17,16 +17,8 @@ export default function Login() {
 				setLoading(true);
 				await login(emailRef.current.value, passwordRef.current.value)
 			} catch (e) {
-				console.log(e.message);
-					switch(e.message){
-							case "Firebase: Error (auth/email-already-in-use).":
-								setStatus('Email is already registered');
-								break;
-							default:
-								setStatus('Failed to log in');
-								break;
-						}
-					setLoading(false);
+				setStatus('Incorrect email or password');
+				setLoading(false);
 			}
 	}
 
@@ -43,6 +35,7 @@ export default function Login() {
             </form>
             <p>{currentUser ? currentUser.email : ""}</p>
 						<p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+						<Link to="/">Go back</Link>
         </div>
     )
 }

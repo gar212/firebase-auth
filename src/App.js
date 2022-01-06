@@ -8,15 +8,17 @@ import Signup from './components/Signup';
 
 function App() {
   return (
-    <AuthProvide>
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/login' element={<Login />}/>
-          <Route path='/signup' element={<Signup />}/>
-        </Routes>
-      </Router>
-    </AuthProvide>
+    <div className="App">
+      <AuthProvide>
+        <Router>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<Signup />}/>
+          </Routes>
+        </Router>
+      </AuthProvide>
+    </div>
   );
 }
 

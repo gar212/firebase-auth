@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth,  } from '../contexts/AuthContext';
 import Button from '@mui/material/Button';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 export default function Signup() {
     const [status, setStatus] = useState('');
@@ -10,6 +10,7 @@ export default function Signup() {
     const passwordRef = useRef();
 		const passwordConfRef = useRef();
     const { signup } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,6 +21,7 @@ export default function Signup() {
 					setStatus('');
 					setLoading(true);
 					await signup(emailRef.current.value, passwordRef.current.value)
+          navigate('/');
         } catch (e) {
             switch(e.message){
                 case "Firebase: Error (auth/email-already-in-use).":
