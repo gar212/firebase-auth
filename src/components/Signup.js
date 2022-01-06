@@ -1,6 +1,7 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef} from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '@mui/material/Button';
+import {Link} from 'react-router-dom';
 
 export default function Signup() {
     const [status, setStatus] = useState('');
@@ -45,6 +46,7 @@ export default function Signup() {
                 <input type="password" ref={passwordConfRef} />
                 <Button disabled={loading} type='submit'>Sign up</Button>
             </form>
+            <p>Don't have an account? <Link to="/login">Go Back</Link></p>
         </div>
     )
 }

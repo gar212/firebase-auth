@@ -36,7 +36,8 @@ export default function AuthProvide({children}) {
     
     const value = {
         signup,
-        login
+        login,
+        currentUser
     }
 
     return (
