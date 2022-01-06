@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '@mui/material/Button';
 
@@ -8,7 +8,9 @@ export default function Login() {
 	const [loading, setLoading] = useState(false);
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { login, currentUser } = useAuth();
+	const { login } = useAuth();
+	const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
 			e.preventDefault();
@@ -16,6 +18,7 @@ export default function Login() {
 				setStatus('');
 				setLoading(true);
 				await login(emailRef.current.value, passwordRef.current.value)
+				navigate('/');
 			} catch (e) {
 				setStatus('Incorrect email or password');
 				setLoading(false);
@@ -33,7 +36,6 @@ export default function Login() {
                 <input type="password" ref={passwordRef} />
                 <Button disabled={loading} type='submit'>Log In</Button>
             </form>
-            <p>{currentUser ? currentUser.email : ""}</p>
 						<p>Don't have an account? <Link to="/signup">Sign up</Link></p>
 						<Link to="/">Go back</Link>
         </div>
